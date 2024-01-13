@@ -1,14 +1,11 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:vertical_percent_indicator/vertical_percent_indicator.dart';
 
 import '../../../constants/icons.dart';
-import '../../screens/HomeScreens/notification.dart';
 
 class BmiWidget extends StatelessWidget {
   const BmiWidget({super.key});
@@ -27,7 +24,7 @@ class BmiWidget extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(22),
         ),
-        shadows: [
+        shadows:  [
           BoxShadow(
             color: Color(0x4C95ADFE),
             blurRadius: 22,

@@ -1,12 +1,10 @@
 import 'package:fitnes_app/views/screens/HomeScreens/notification.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:vertical_percent_indicator/vertical_percent_indicator.dart';
-import '../../../constants/icons.dart';
 import '../../widgets/homeScreenWidgets/homeScreenWidget.dart';
 
 class HomePagePage extends StatefulWidget {
@@ -69,7 +67,7 @@ class _HomePagePageState extends State<HomePagePage> {
                               padding: MaterialStateProperty.all(EdgeInsets.zero),
                             ),
                             onPressed: () {
-                              Get.to(NotificationScreen(),transition: Transition.fade,duration: Duration(milliseconds: 300));
+                              Get.to(const NotificationScreen(),transition: Transition.fade,duration: const Duration(milliseconds: 300));
 
                             },
                             child: const Icon(
@@ -82,25 +80,25 @@ class _HomePagePageState extends State<HomePagePage> {
                     ),
                   ),
                   20.heightBox,
-                  BmiWidget(),
+                  const BmiWidget(),
                   30.heightBox,
-                  TargetWidget(),
+                  const TargetWidget(),
                   30.heightBox,
                   Align(
                       alignment: Alignment.topLeft,
-                      child: Text("Activity Status").text.size(16).bold.make()),
+                      child: const Text("Activity Status").text.size(16).bold.make()),
                   30.heightBox,
-                  ChartWidget(),
+                  const ChartWidget(),
                   30.heightBox,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      VerticalIndecatorWidget(),
+                      const VerticalIndecatorWidget(),
                       Column(
                         children: [
-                          SleepWidget(),
+                          const SleepWidget(),
                           20.heightBox,
-                          CaloriesWidget(),
+                          const CaloriesWidget(),
                         ],
                       ),
                     ],

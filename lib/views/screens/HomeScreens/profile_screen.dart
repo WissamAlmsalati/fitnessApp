@@ -1,7 +1,5 @@
-import 'package:fitnes_app/constants/icons.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import '../../../constants/lists.dart';
 import '../../widgets/homeScreenWidgets/profileWidjets.dart';
 
@@ -23,20 +21,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
       body: Column(
         children: [
-          UserInfo(),
+          const UserInfo(),
           10.heightBox,
-          UserBoxData(),
+          const UserBoxData(),
           20.heightBox,
           Container(
             width: MediaQuery.of(context).size.width * 0.91,
-            height: 189,
+            height: MediaQuery.of(context).size.height * 0.25,
             decoration: ShapeDecoration(
               color: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
               ),
-              shadows: [
-                BoxShadow(
+              shadows:const [
+                  BoxShadow(
                   color: Color(0x111D1617),
                   blurRadius: 40,
                   offset: Offset(0, 10),
@@ -49,7 +47,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(12.0),
-                  child: Text("Account Settings").text.size(20).bold.make(),
+                  child: const Text("Account Settings").text.size(20).bold.make(),
                 ),
                 Column(
                   children: List.generate(4, (index) => Padding(
@@ -61,7 +59,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                       ],
                     ),
-                  )).toList(),
+                  ))
                 )
               ],
             ),
