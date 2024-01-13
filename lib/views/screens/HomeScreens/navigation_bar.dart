@@ -21,9 +21,8 @@ class _NavigationBarScreen extends State<NavigationBarScreen> {
         body: ScrenList[_selectedIndex],
         bottomNavigationBar: Container(
           width: 300,
-          height: 75,
-          decoration: const BoxDecoration(
-          ),
+          height: MediaQuery.of(context).size.height * 0.1,
+          decoration: const BoxDecoration(),
           child: BottomNavigationBar(
             elevation: 0,
             type: BottomNavigationBarType.fixed,
@@ -46,9 +45,7 @@ class _NavigationBarScreen extends State<NavigationBarScreen> {
                 icon: cameraIco,
                 label: 'Profile',
               ),
-              BottomNavigationBarItem(
-                icon: profileIco,
-                label: 'Profile'),
+              BottomNavigationBarItem(icon: profileIco, label: 'Profile'),
             ],
             onTap: (index) {
               setState(() {
