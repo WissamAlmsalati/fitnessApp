@@ -49,3 +49,9 @@ List <String>AccountSettingsStrings=[
   "Activity History",
   "Workout Progress",
 ];
+
+List<String>OtherWidgetText=[
+"Conact Us",
+"Privacy And Policy",
+"Setting",
+];

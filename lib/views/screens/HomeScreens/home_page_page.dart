@@ -5,6 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:vertical_percent_indicator/vertical_percent_indicator.dart';
+import '../../../constants/lists.dart';
 import '../../widgets/homeScreenWidgets/homeScreenWidget.dart';
 
 class HomePagePage extends StatefulWidget {
@@ -111,3 +112,5 @@ class _HomePagePageState extends State<HomePagePage> {
     );
   }
 }
+
+

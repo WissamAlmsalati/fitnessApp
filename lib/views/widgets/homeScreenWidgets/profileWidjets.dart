@@ -14,7 +14,7 @@ class UserInfo extends StatefulWidget {
 class _UserInfoState extends State<UserInfo> {
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
       height: MediaQuery.of(context).size.height / 7,
       width: MediaQuery.of(context).size.width,
       child: Row(
@@ -44,6 +44,13 @@ class _UserInfoState extends State<UserInfo> {
                 end: Alignment(1, -0.08),
                 colors: [Color(0xFF92A3FD), Color(0xFF9DCEFF)],
               ),
+              shadows: [
+                BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 10,
+                  offset: Offset(0, 5),
+                ),
+              ],
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(99),
               ),
@@ -69,33 +76,188 @@ class _UserBoxDataState extends State<UserBoxData> {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: List.generate(3, (index) => Container(
-        width: 105,
-        height: 75,
-        decoration: ShapeDecoration(
-          color: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
+      children: List.generate(
+          3,
+          (index) => Container(
+                width: 105,
+                height: 75,
+                decoration: ShapeDecoration(
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  shadows: [
+                    BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 10,
+                      offset: Offset(0, 5),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(UestInfoData2[index])
+                        .text
+                        .size(15)
+                        .bold
+                        .color(Colors.blueAccent)
+                        .make(),
+                    Text(UestInfoData1[index]),
+                  ],
+                ),
+              )),
+    );
+  }
+}
+
+class AccountSettingWidget extends StatefulWidget {
+  const AccountSettingWidget({super.key});
+
+  @override
+  State<AccountSettingWidget> createState() => _AccountSettingWidgetState();
+}
+
+class _AccountSettingWidgetState extends State<AccountSettingWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.91,
+      height: MediaQuery.of(context).size.height * 0.25,
+      decoration: ShapeDecoration(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        shadows: const [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 10,
+            offset: Offset(0, 5),
           ),
-          shadows: [
-            BoxShadow(
-              color: Color(0x111D1617),
-              blurRadius: 40,
-              offset: Offset(0, 10),
-              spreadRadius: 0,
-            ),
-          ],
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(UestInfoData2[index]).text.size(15).bold.color(Colors.blueAccent).make(),
-            Text(UestInfoData1[index]),
-          ],
-        ),
-      )
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: const Text("Account Settings").text.size(20).bold.make(),
+          ),
+          Column(
+              children: List.generate(
+                  AccountSettingsStrings.length,
+                  (index) => Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(AccountSettingsStrings[index])
+                                .text
+                                .size(10)
+                                .make(),
+                          ],
+                        ),
+                      )))
+        ],
       ),
     );
   }
 }
 
+class NotificationWidget extends StatefulWidget {
+  const NotificationWidget({super.key});
+
+  @override
+  State<NotificationWidget> createState() => _NotificationWidgetState();
+}
+
+class _NotificationWidgetState extends State<NotificationWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.12,
+      width: MediaQuery.of(context).size.width * 0.9,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: Colors.white,
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 10,
+            offset: Offset(0, 5),
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Text("Notification").text.size(20).bold.make(),
+              )),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text("Pop-Up Notification"),
+              80.widthBox,
+              Switch(value: true, onChanged: (Value) {}),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class OtherWidget extends StatefulWidget {
+  const OtherWidget({super.key});
+
+  @override
+  State<OtherWidget> createState() => _OtherWidget();
+}
+
+class _OtherWidget extends State<OtherWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.91,
+      height: MediaQuery.of(context).size.height * 0.21,
+      decoration: ShapeDecoration(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        shadows: const [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 10,
+            offset: Offset(0, 5),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: const Text("Account Settings").text.size(20).bold.make(),
+          ),
+          Column(
+              children: List.generate(
+                  OtherWidgetText.length,
+                  (index) => Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(OtherWidgetText[index]).text.size(10).make(),
+                          ],
+                        ),
+                      )))
+        ],
+      ),
+    );
+  }
+}
