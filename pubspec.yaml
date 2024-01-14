@@ -17,6 +17,8 @@ dependencies:
   velocity_x: ^4.1.2
   vertical_percent_indicator: ^0.0.1
   percent_indicator: ^3.0.1
+  camera: ^0.10.5+9
+  path_provider: ^2.1.2
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../../../constants/icons.dart';
 
@@ -14,7 +15,7 @@ class _GenderSelectionScreenState extends State<GenderSelectionScreen> {
   @override
   Widget build(BuildContext context) {
     String? _selectedGender;
-    return  Container(
+    return Container(
       width: context.screenWidth * 0.8,
       decoration: ShapeDecoration(
         color: const Color(0xFFF7F8F8),
@@ -34,7 +35,6 @@ class _GenderSelectionScreenState extends State<GenderSelectionScreen> {
               borderRadius: BorderRadius.circular(17),
             ),
           ),
-
           value: _selectedGender,
           items: <String>['Male', 'Female'].map((String value) {
             return DropdownMenuItem(
@@ -52,41 +52,69 @@ class _GenderSelectionScreenState extends State<GenderSelectionScreen> {
 }
 
 class DatePicker extends StatefulWidget {
-  const DatePicker({super.key});
+  const DatePicker({Key? key});
 
   @override
   State<DatePicker> createState() => _DatePickerState();
 }
 
 class _DatePickerState extends State<DatePicker> {
-
   DateTime _selectedDate = DateTime.now();
 
-
   Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: _selectedDate,
-      firstDate: DateTime(1900),
-      lastDate: DateTime.now(),
-    );
-    if (picked != null && picked != _selectedDate)
-      setState(() {
-        _selectedDate = picked;
-      });
-  }
+    DateTime? picked;
+    if (Theme.of(context).platform == TargetPlatform.iOS) {
+      picked = await showCupertinoModalPopup<DateTime>(
+        context: context,
+        builder: (BuildContext context) {
+          return Center(
+            child: Container(
+              height: 300,
+              width: 375,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(14),
+              ),
+              child: CupertinoDatePicker(
+                mode: CupertinoDatePickerMode.date,
+                backgroundColor: Colors.white,
+                initialDateTime: _selectedDate,
+                minimumDate: DateTime(1900),
+                maximumDate: DateTime.now(),
+                onDateTimeChanged: (DateTime newDate) {
+                  setState(() {
+                    _selectedDate = newDate;
+                  });
+                },
+              ),
+            ),
+          );
+        },
+      );
+    } else {
+      picked = await showDatePicker(
+        context: context,
+        initialDate: _selectedDate,
+        firstDate: DateTime(1900),
+        lastDate: DateTime.now(),
+      );
+    }
 
+    if (picked != null && picked != _selectedDate) {
+      setState(() {
+        _selectedDate = picked ?? DateTime.now();
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: context.screenWidth * 0.8,
-      decoration: ShapeDecoration(
-        color: const Color(0xFFF7F8F8),
-        shape: RoundedRectangleBorder(
-          side: const BorderSide(width: 1, color: Color(0xFFF7F8F8)),
-          borderRadius: BorderRadius.circular(14),
-        ),
+      width: MediaQuery.of(context).size.width * 0.8,
+      decoration: BoxDecoration(
+        color: Colors.white, // Set a non-transparent color here
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(width: 1, color: Color(0xFFF7F8F8)),
       ),
       child: TextFormField(
         decoration: InputDecoration(
@@ -102,18 +130,18 @@ class _DatePickerState extends State<DatePicker> {
         onTap: () {
           _selectDate(context);
         },
-        controller: TextEditingController(text: "${_selectedDate.toLocal()}".split(' ')[0]),
+        controller: TextEditingController(
+            text: "${_selectedDate.toLocal()}".split(' ')[0]),
         readOnly: true,
       ),
     );
+  }
 }
-}
-
 
 class ChoseWeightOrWidth extends StatefulWidget {
   var Icon;
   String? hintText;
-   ChoseWeightOrWidth({super.key , this.Icon , this.hintText});
+  ChoseWeightOrWidth({super.key, this.Icon, this.hintText});
 
   @override
   State<ChoseWeightOrWidth> createState() => _ChoseWeightOrWidthState();
@@ -122,7 +150,7 @@ class ChoseWeightOrWidth extends StatefulWidget {
 class _ChoseWeightOrWidthState extends State<ChoseWeightOrWidth> {
   @override
   Widget build(BuildContext context) {
-    return   Container(
+    return Container(
       width: context.screenWidth * 0.8,
       decoration: ShapeDecoration(
         color: const Color(0xFFF7F8F8),
@@ -155,4 +183,3 @@ class _ChoseWeightOrWidthState extends State<ChoseWeightOrWidth> {
     );
   }
 }
-
