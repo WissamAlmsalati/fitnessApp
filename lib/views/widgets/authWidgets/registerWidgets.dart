@@ -1,4 +1,5 @@
 import 'package:fitnes_app/views/screens/AuthScreens/setProfile.dart';
+import 'package:fitnes_app/views/screens/HomeScreens/navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,8 +11,9 @@ class CoustomTextFiled extends StatelessWidget {
   var icon;
   var label;
   var suffixIcon;
+  var controller;
 
-  CoustomTextFiled({super.key, this.icon, this.label, this.suffixIcon});
+  CoustomTextFiled({super.key, this.icon, this.label, this.suffixIcon , this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +27,7 @@ class CoustomTextFiled extends StatelessWidget {
         ),
       ),
       child: TextField(
+        controller: controller,
         decoration: InputDecoration(
           prefixIcon: Padding(
             padding: const EdgeInsets.all(12.0),
@@ -64,6 +67,7 @@ class _CoustomCheckAndServicesState extends State<CoustomCheckAndServices> {
             value: _isCheck, // Use the state variable here
             onChanged: (value) {
               setState(() {
+                Get.to(() => NavigationBarScreen());
                 _isCheck = value!; // Change the state variable here
               });
             }),

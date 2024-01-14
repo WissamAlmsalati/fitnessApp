@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fitnes_app/services/authintication.dart';
 import 'package:fitnes_app/views/screens/AuthScreens/registerScreen.dart';
+import 'package:fitnes_app/views/screens/HomeScreens/navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,6 +19,10 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,11 +36,13 @@ class _LogInState extends State<LogIn> {
               Text("Create an account").text.bold.size(20).make(),
               30.heightBox,
               CoustomTextFiled(
+                controller: _emailController,
                 icon: email,
                 label: "Email",
               ),
               20.heightBox,
               CoustomTextFiled(
+                controller: _passwordController,
                 icon: password,
                 label: "Passeword",
                 suffixIcon: hidePass,
@@ -47,13 +56,29 @@ class _LogInState extends State<LogIn> {
                 ),
               ),
               317.heightBox,
-              RegisterBouttom(
-                text: "Log In",
-                onTap: () {
-                  Get.to(RegisterScreen());
+            RegisterBouttom(
+              text: "Log In",
+              onTap: () async {
+                String email = _emailController.text.trim();
+                String password = _passwordController.text.trim();
 
-                },
-              ),
+                if (email.isEmpty || password.isEmpty) {
+                  Get.snackbar("Error", "Please fill in all fields");
+                } else {
+                  try {
+                    UserCredential userCredential = await AuthinticantioService().signInWithEmailAndPassword(email, password);
+                    if (userCredential.user != null) {
+                      Get.to(NavigationBarScreen());
+                    } else {
+                      Get.snackbar("Error", "User does not exist. Please register.");
+                    }
+                  } catch (e) {
+                    // If there is an error, show it in a snack bar
+                    Get.snackbar("Error", e.toString());
+                  }
+                }
+              },
+            ),
               15.heightBox,
               Container(
                 height: 20,

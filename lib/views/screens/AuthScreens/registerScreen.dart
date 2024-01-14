@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitnes_app/constants/colors.dart';
 import 'package:fitnes_app/constants/icons.dart';
+import 'package:fitnes_app/services/authintication.dart';
 import 'package:fitnes_app/views/screens/AuthScreens/setProfile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +20,9 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+ final FirebaseAuth _auth = FirebaseAuth.instance;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,11 +47,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
               CoustomTextFiled(
                 icon: email,
                 label: "Email",
+                controller: _emailController,
               ),
               20.heightBox,
               CoustomTextFiled(
                 icon: password,
                 label: "Passeword",
+                controller: _passwordController,
                 suffixIcon: hidePass,
               ),
               Align(
@@ -59,12 +66,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               137.heightBox,
               RegisterBouttom(
-
                 onTap: () {
+                 String email = _emailController.text.trim();
+                  String password = _passwordController.text.trim();
+                  if (email.isEmpty || password.isEmpty) {
+                    Get.snackbar("Error", "Please fill in all fields");
+                  }else{
+                  AuthinticantioService().signUpWithEmailAndPassword(_emailController.text, _passwordController.text);
+                  print(_passwordController.text+ " " + _emailController.text);
                   Get.to(SetProfile());
                   duration: Duration(milliseconds: 1000);
                   transition: Transition.downToUp;
-                },
+                }
+                }
               ),
               15.heightBox,
               Container(
