@@ -20,11 +20,11 @@ class _UserInfoState extends State<UserInfo> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          10.widthBox,
+          20.widthBox,
           CircleAvatar(
             radius: 40,
           ),
-          10.widthBox,
+          20.widthBox,
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,7 +57,7 @@ class _UserInfoState extends State<UserInfo> {
             ),
             child: Text("Edit").text.white.makeCentered(),
           ),
-          10.widthBox,
+          20.widthBox,
         ],
       ),
     );

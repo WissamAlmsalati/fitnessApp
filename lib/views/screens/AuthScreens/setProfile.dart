@@ -41,7 +41,6 @@ class _SetProfileState extends State<SetProfile> {
       resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: SingleChildScrollView(
-
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
             padding: EdgeInsets.only(bottom: isKeyboardVisible ? 20 : 0),
@@ -59,11 +58,7 @@ class _SetProfileState extends State<SetProfile> {
                       width: 200,
                     ),
                     30.heightBox,
-                    Text("Let's set up your profile")
-                        .text
-                        .bold
-                        .size(22)
-                        .make(),
+                    Text("Let's set up your profile").text.bold.size(22).make(),
                     Text("It will help us to know you better")
                         .text
                         .color(Colors.grey)
