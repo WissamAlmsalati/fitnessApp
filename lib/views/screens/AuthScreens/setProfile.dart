@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fitnes_app/services/createAnewUser.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,6 +22,11 @@ class SetProfile extends StatefulWidget {
 class _SetProfileState extends State<SetProfile> {
   bool isKeyboardVisible = false;
   late KeyboardVisibilityController _keyboardVisibilityController;
+
+  TextEditingController _weight = TextEditingController();
+  TextEditingController _height = TextEditingController();
+
+  final _auth = FirebaseAuth.instance;
 
   @override
   void initState() {
@@ -70,18 +77,31 @@ class _SetProfileState extends State<SetProfile> {
                     DatePicker(),
                     15.heightBox,
                     ChoseWeightOrWidth(
+                    controler: _weight,
                       Icon: weight,
                       hintText: "Weight",
                     ),
                     15.heightBox,
                     ChoseWeightOrWidth(
+                      controler: _height,
                       Icon: height,
                       hintText: "Height",
                     ),
                     30.heightBox,
                     RegisterBouttom(
-                      onTap: () {
+                      onTap: () async{
+                        try{
+                          if(_auth.currentUser != null)
+                         await _auth.currentUser!.reload();
+                         await  UserDoc(
+                          uid: _auth.currentUser!.uid,
+                          weight: _weight.text,
+                          height: _height.text,
+                        ).updateUserData();
                         Get.to(GoalsPageView());
+                        }catch(e){
+                          Get.snackbar("Error", e.toString());
+                        }                      
                       },
                     ),
                   ],

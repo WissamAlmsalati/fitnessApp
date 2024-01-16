@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fitnes_app/services/createAnewUser.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../constants/icons.dart';
+
 
 class GenderSelectionScreen extends StatefulWidget {
   @override
@@ -10,7 +13,13 @@ class GenderSelectionScreen extends StatefulWidget {
 }
 
 class _GenderSelectionScreenState extends State<GenderSelectionScreen> {
-  String? selectedGender; // Variable to store the selected gender
+  String? selectedGender; 
+  UserDoc? userDoc;
+
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +53,7 @@ class _GenderSelectionScreenState extends State<GenderSelectionScreen> {
           }).toList(),
           onChanged: (String? newValue) {
             setState(() {
+              UserDoc(uid: _auth.currentUser!.uid, gender: newValue).updateUserData();
               _selectedGender = newValue;
             });
           }),
@@ -141,11 +151,13 @@ class _DatePickerState extends State<DatePicker> {
 class ChoseWeightOrWidth extends StatefulWidget {
   var Icon;
   String? hintText;
-  ChoseWeightOrWidth({super.key, this.Icon, this.hintText});
+    var controler;
 
+  ChoseWeightOrWidth({super.key, this.Icon, this.hintText , this.controler});
   @override
   State<ChoseWeightOrWidth> createState() => _ChoseWeightOrWidthState();
 }
+
 
 class _ChoseWeightOrWidthState extends State<ChoseWeightOrWidth> {
   @override
@@ -160,6 +172,8 @@ class _ChoseWeightOrWidthState extends State<ChoseWeightOrWidth> {
         ),
       ),
       child: TextFormField(
+        keyboardType: TextInputType.number,
+      controller: widget.controler,
         decoration: InputDecoration(
           prefixIcon: Padding(
             padding: const EdgeInsets.all(8.0),

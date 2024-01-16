@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitnes_app/constants/colors.dart';
 import 'package:fitnes_app/constants/icons.dart';
 import 'package:fitnes_app/services/authintication.dart';
+import 'package:fitnes_app/services/createAnewUser.dart';
 import 'package:fitnes_app/views/screens/AuthScreens/setProfile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
  final FirebaseAuth _auth = FirebaseAuth.instance;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,11 +38,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Text("Create an account").text.bold.size(20).make(),
               30.heightBox,
               CoustomTextFiled(
+                controller: _nameController,
                 icon: personIcon,
                 label: "First Name",
               ),
               15.heightBox,
               CoustomTextFiled(
+                controller: _lastNameController,
                 icon: personIcon,
                 label: "Last Name",
               ),
@@ -68,10 +73,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
               RegisterBouttom(
                 onTap: () {
                  String email = _emailController.text.trim();
+                 String name = _nameController.text.trim();
+                  String lastName = _lastNameController.text.trim();
                   String password = _passwordController.text.trim();
-                  if (email.isEmpty || password.isEmpty) {
+                  if (email.isEmpty || password.isEmpty || name.isEmpty || lastName.isEmpty) {
                     Get.snackbar("Error", "Please fill in all fields");
                   }else{
+                   UserDoc( 
+                  uid: _auth.currentUser!.uid,
+                  email: email,
+                  firstname: name,
+                  lastname: lastName,
+                   ).createUserData();
                   AuthinticantioService().signUpWithEmailAndPassword(_emailController.text, _passwordController.text);
                   print(_passwordController.text+ " " + _emailController.text);
                   Get.to(SetProfile());

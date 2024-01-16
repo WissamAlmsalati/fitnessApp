@@ -123,7 +123,7 @@ class _AccountSettingWidgetState extends State<AccountSettingWidget> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.91,
-      height: MediaQuery.of(context).size.height * 0.25,
+      height: MediaQuery.of(context).size.height * 0.26,
       decoration: ShapeDecoration(
         color: Colors.white,
         shape: RoundedRectangleBorder(

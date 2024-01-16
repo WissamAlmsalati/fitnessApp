@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fitnes_app/services/createAnewUser.dart';
 import 'package:fitnes_app/views/screens/HomeScreens/notification.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,7 +17,10 @@ class HomePagePage extends StatefulWidget {
   State<HomePagePage> createState() => _HomePagePageState();
 }
 
+
 class _HomePagePageState extends State<HomePagePage> {
+   final FirebaseAuth _auth = FirebaseAuth.instance;
+String? firstname;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,9 +41,20 @@ class _HomePagePageState extends State<HomePagePage> {
                             const Text(
                               'Welcome back',
                              ).text.size(12).color(Colors.grey).make(),
-                            const Text(
-                              'Wissam Almsalati',
-                            ).text.size(20).bold.make(),
+                         FutureBuilder(
+  future: UserDoc(uid: _auth.currentUser!.uid).getUserData(),
+  builder: (BuildContext context, AsyncSnapshot<UserDoc> snapshot) {
+    if (snapshot.connectionState == ConnectionState.waiting) {
+      return CircularProgressIndicator(); // Show a loading spinner while waiting
+    } else if (snapshot.hasError) {
+      return Text('Error: ${snapshot.error}'); // Show error message if something went wrong
+    } else {
+      return Text(
+        '${snapshot.data!.firstname}', // Display the user's username
+      ).text.size(16).bold.make();
+    }
+  },
+)
                           ],
                         ),
                         const Spacer(),
