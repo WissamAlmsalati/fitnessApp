@@ -1,20 +1,15 @@
 import 'package:fitnes_app/constants/lists.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../HomeScreens/navigation_bar.dart';
 
-class GoalsPageView extends StatefulWidget {
-  const GoalsPageView({Key? key});
+class GoalsPageView extends StatelessWidget {
+   GoalsPageView({Key? key});
 
-  @override
-  State<GoalsPageView> createState() => _GoalsPageViewState();
-}
-
-class _GoalsPageViewState extends State<GoalsPageView> {
   final PageController _pageController = PageController(viewportFraction: 0.8);
+
   int _currentPageIndex = 0;
 
   @override
@@ -115,6 +110,7 @@ class _GoalsPageViewState extends State<GoalsPageView> {
             ),
             ElevatedButton(
               onPressed: () {
+                // ignore: prefer_const_constructors
                 Get.to(NavigationBarScreen());
               },
               style: ButtonStyle(

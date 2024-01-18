@@ -10,22 +10,23 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+
 import '../../widgets/authWidgets/registerWidgets.dart';
 import 'login.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+class RegisterScreen extends StatelessWidget {
+   RegisterScreen({super.key});
 
-  @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
-}
-
-class _RegisterScreenState extends State<RegisterScreen> {
  final FirebaseAuth _auth = FirebaseAuth.instance;
+
   final TextEditingController _emailController = TextEditingController();
+
   final TextEditingController _passwordController = TextEditingController();
+
   final TextEditingController _nameController = TextEditingController();
+
   final TextEditingController _lastNameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,26 +72,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               137.heightBox,
               RegisterBouttom(
-                onTap: () {
-                 String email = _emailController.text.trim();
-                 String name = _nameController.text.trim();
+                onTap: () async {
+                  String email = _emailController.text.trim();
+                  String name = _nameController.text.trim();
                   String lastName = _lastNameController.text.trim();
                   String password = _passwordController.text.trim();
                   if (email.isEmpty || password.isEmpty || name.isEmpty || lastName.isEmpty) {
                     Get.snackbar("Error", "Please fill in all fields");
-                  }else{
-                   UserDoc( 
-                  uid: _auth.currentUser!.uid,
-                  email: email,
-                  firstname: name,
-                  lastname: lastName,
-                   ).createUserData();
-                  AuthinticantioService().signUpWithEmailAndPassword(_emailController.text, _passwordController.text);
-                  print(_passwordController.text+ " " + _emailController.text);
-                  Get.to(SetProfile());
-                  duration: Duration(milliseconds: 1000);
-                  transition: Transition.downToUp;
-                }
+                  } else {
+                    UserCredential userCredential = await AuthinticantioService().signUp(email, password);
+                    String uid = userCredential.user!.uid;
+                   UserDoc userDoc = UserDoc(
+  uid: uid,
+  email: email,
+  firstname: name,
+  lastname: lastName,
+);
+await userDoc.createUserData(); // Wait for user data creation to finish
+Get.to(const SetProfile());
+                  }
                 }
               ),
               15.heightBox,
@@ -105,7 +105,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       width: context.screenWidth * 0.35,
                       color: Colors.black.withOpacity(0.5),
                     ),
-                    Text(
+                  const  Text(
                       "Or",
                     ),
                     Container(
@@ -117,18 +117,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
               22.heightBox,
-              GoogleAndFacebook(),
+            const  GoogleAndFacebook(),
               22.heightBox,
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Already have an account?"),
+                const  Text("Already have an account?"),
                   5.widthBox,
                   TextButton(
                       onPressed: () {
                         Get.to(LogIn(),
                             transition: Transition.downToUp,
-                            duration: Duration(milliseconds: 400));
+                            duration:const Duration(milliseconds: 400));
                       },
                       child: Text(
                         "Login",

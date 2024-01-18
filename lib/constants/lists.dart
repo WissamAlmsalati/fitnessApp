@@ -1,4 +1,3 @@
-import 'package:fitnes_app/main.dart';
 import 'package:fitnes_app/views/screens/HomeScreens/activatiy_screen_page.dart';
 import 'package:fitnes_app/views/screens/HomeScreens/camer_page.dart';
 import 'package:fitnes_app/views/screens/HomeScreens/home_page_page.dart';
@@ -6,7 +5,6 @@ import 'package:fitnes_app/views/screens/HomeScreens/profile_screen.dart';
 import 'package:fitnes_app/views/screens/HomeScreens/search_screen_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:camera/camera.dart';
 
 
 List vectoresImage = [

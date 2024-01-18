@@ -21,7 +21,7 @@ class _UserInfoState extends State<UserInfo> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           20.widthBox,
-          CircleAvatar(
+          const CircleAvatar(
             radius: 40,
           ),
           20.widthBox,
@@ -29,22 +29,22 @@ class _UserInfoState extends State<UserInfo> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Name'),
+              const Text('Name'),
               5.heightBox,
-              Text('Your Program'),
+              const Text('Your Program'),
             ],
           ),
-          Spacer(),
+          const Spacer(),
           Container(
             width: 83,
             height: 40,
             decoration: ShapeDecoration(
-              gradient: LinearGradient(
+              gradient: const LinearGradient(
                 begin: Alignment(-1.00, 0.08),
                 end: Alignment(1, -0.08),
                 colors: [Color(0xFF92A3FD), Color(0xFF9DCEFF)],
               ),
-              shadows: [
+              shadows: const [
                 BoxShadow(
                   color: Colors.black12,
                   blurRadius: 10,
@@ -55,7 +55,7 @@ class _UserInfoState extends State<UserInfo> {
                 borderRadius: BorderRadius.circular(99),
               ),
             ),
-            child: Text("Edit").text.white.makeCentered(),
+            child: const Text("Edit").text.white.makeCentered(),
           ),
           20.widthBox,
         ],
@@ -86,7 +86,7 @@ class _UserBoxDataState extends State<UserBoxData> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
-                  shadows: [
+                  shadows: const [
                     BoxShadow(
                       color: Colors.black12,
                       blurRadius: 10,
@@ -195,12 +195,12 @@ class _NotificationWidgetState extends State<NotificationWidget> {
               alignment: Alignment.topLeft,
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: Text("Notification").text.size(20).bold.make(),
+                child: const Text("Notification").text.size(20).bold.make(),
               )),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Text("Pop-Up Notification"),
+              const Text("Pop-Up Notification"),
               80.widthBox,
               Switch(value: true, onChanged: (Value) {}),
             ],

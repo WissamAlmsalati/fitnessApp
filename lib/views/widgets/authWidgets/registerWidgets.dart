@@ -1,11 +1,9 @@
-import 'package:fitnes_app/views/screens/AuthScreens/setProfile.dart';
 import 'package:fitnes_app/views/screens/HomeScreens/navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../../constants/icons.dart';
-import '../../screens/AuthScreens/login.dart';
 
 class CoustomTextFiled extends StatelessWidget {
   var icon;
@@ -67,7 +65,7 @@ class _CoustomCheckAndServicesState extends State<CoustomCheckAndServices> {
             value: _isCheck, // Use the state variable here
             onChanged: (value) {
               setState(() {
-                Get.to(() => NavigationBarScreen());
+                Get.to(() =>const NavigationBarScreen());
                 _isCheck = value!; // Change the state variable here
               });
             }),
@@ -106,7 +104,7 @@ class _CoustomCheckAndServicesState extends State<CoustomCheckAndServices> {
   }
 }
 
-class RegisterBouttom extends StatefulWidget {
+class RegisterBouttom extends StatelessWidget {
   String? text;
   Function() onTap;
 
@@ -114,15 +112,10 @@ class RegisterBouttom extends StatefulWidget {
   RegisterBouttom({super.key, this.text, required this.onTap,  });
 
   @override
-  State<RegisterBouttom> createState() => _RegisterBouttomState();
-}
-
-class _RegisterBouttomState extends State<RegisterBouttom> {
-  @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        widget.onTap();
+        onTap();
       },
       child: Container(
         width: 315,
@@ -161,7 +154,7 @@ class _RegisterBouttomState extends State<RegisterBouttom> {
               left: 124,
               top: 18,
               child: Text(
-                widget.text ?? "Register",
+                text ?? "Register",
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Colors.white,
@@ -177,14 +170,9 @@ class _RegisterBouttomState extends State<RegisterBouttom> {
   }
 }
 
-class GoogleAndFacebook extends StatefulWidget {
+class GoogleAndFacebook extends StatelessWidget {
   const GoogleAndFacebook({super.key});
 
-  @override
-  State<GoogleAndFacebook> createState() => _GoogleAndFacebookState();
-}
-
-class _GoogleAndFacebookState extends State<GoogleAndFacebook> {
   @override
   Widget build(BuildContext context) {
     return Row(

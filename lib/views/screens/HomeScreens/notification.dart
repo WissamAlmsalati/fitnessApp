@@ -2,14 +2,9 @@ import 'package:fitnes_app/constants/icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class NotificationScreen extends StatefulWidget {
+class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
 
-  @override
-  State<NotificationScreen> createState() => _NotificationScreenState();
-}
-
-class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +18,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
               width: 32,
               height: 32,
               decoration: ShapeDecoration(
-                color: Color(0xFFF7F8F8),
+                color: const Color(0xFFF7F8F8),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
               ),
               child: Padding(
@@ -36,7 +31,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                 width: 32,
                 height: 32,
                 decoration: ShapeDecoration(
-                  color: Color(0xFFF7F8F8),
+                  color: const Color(0xFFF7F8F8),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                 ),
 

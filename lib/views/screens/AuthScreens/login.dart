@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitnes_app/services/authintication.dart';
+import 'package:fitnes_app/services/createAnewUser.dart';
 import 'package:fitnes_app/views/screens/AuthScreens/registerScreen.dart';
 import 'package:fitnes_app/views/screens/HomeScreens/navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,16 +12,13 @@ import 'package:velocity_x/velocity_x.dart';
 import '../../../constants/icons.dart';
 import '../../widgets/authWidgets/registerWidgets.dart';
 
-class LogIn extends StatefulWidget {
-  const LogIn({super.key});
+class LogIn extends StatelessWidget {
+   LogIn({super.key});
 
-  @override
-  State<LogIn> createState() => _LogInState();
-}
-
-class _LogInState extends State<LogIn> {
     final FirebaseAuth _auth = FirebaseAuth.instance;
+
   final TextEditingController _emailController = TextEditingController();
+
   final TextEditingController _passwordController = TextEditingController();
 
   @override
@@ -66,7 +64,9 @@ class _LogInState extends State<LogIn> {
                   Get.snackbar("Error", "Please fill in all fields");
                 } else {
                   try {
-                    UserCredential userCredential = await AuthinticantioService().signInWithEmailAndPassword(email, password);
+                    UserCredential userCredential = await FirebaseAuth.instance
+                        .signInWithEmailAndPassword(
+                            email: email, password: password);  
                     if (userCredential.user != null) {
                       Get.to(NavigationBarScreen());
                     } else {

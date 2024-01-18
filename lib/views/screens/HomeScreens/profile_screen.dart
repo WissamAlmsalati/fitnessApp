@@ -1,17 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:velocity_x/velocity_x.dart';
-import '../../../constants/lists.dart';
 import '../../widgets/homeScreenWidgets/profileWidjets.dart';
 
-class ProfileScreen extends StatefulWidget {
+class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
-  @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
-}
-
-class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,11 +20,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
             10.heightBox,
             const UserBoxData(),
             20.heightBox,
-            AccountSettingWidget(),
+            const AccountSettingWidget(),
             20.heightBox,
-            NotificationWidget(),
+            const NotificationWidget(),
             20.heightBox,
-            OtherWidget(),
+            const OtherWidget(),
             20.heightBox,
           ],
         ),

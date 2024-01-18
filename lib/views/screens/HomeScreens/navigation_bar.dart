@@ -1,11 +1,10 @@
 import 'package:fitnes_app/constants/icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import '../../../constants/icons.dart';
+
 import '../../../constants/lists.dart';
 
 class NavigationBarScreen extends StatefulWidget {
-  NavigationBarScreen({super.key});
+ const NavigationBarScreen({super.key});
 
   @override
   State<NavigationBarScreen> createState() => _NavigationBarScreen();
@@ -16,7 +15,6 @@ class _NavigationBarScreen extends State<NavigationBarScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Color _iconColor = Color(0xFFADA4A5);
     return Scaffold(
         body: ScrenList[_selectedIndex],
         bottomNavigationBar: Container(

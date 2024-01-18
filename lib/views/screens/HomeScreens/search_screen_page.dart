@@ -2,14 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class SearchScreenPage extends StatefulWidget {
+class SearchScreenPage extends StatelessWidget {
   const SearchScreenPage({super.key});
 
-  @override
-  State<SearchScreenPage> createState() => _SearchScreenPageState();
-}
-
-class _SearchScreenPageState extends State<SearchScreenPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,19 +30,19 @@ class _SearchScreenPageState extends State<SearchScreenPage> {
                 ),
               ),
               10.heightBox,
-              Container(
+              SizedBox(
                 height: 50,
                 width: MediaQuery.of(context).size.width * 0.9,
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
+                    Text(
                       'Recent Searches',
                       style: TextStyle(
                         fontSize: 20,
                       ),
                     ),
-                    const Text(
+                    Text(
                       'Clear',
                       style: TextStyle(
                         fontSize: 20,

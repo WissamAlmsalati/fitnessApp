@@ -1,5 +1,4 @@
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -16,7 +15,7 @@ class BmiWidget extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.16,
       decoration: ShapeDecoration(
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           begin: Alignment(-1.00, 0.08),
           end: Alignment(1, -0.08),
           colors: [Color(0xFF92A3FD), Color(0xFF9DCEFF)],
@@ -24,7 +23,7 @@ class BmiWidget extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(22),
         ),
-        shadows:  [
+        shadows:  const [
           BoxShadow(
             color: Color(0x4C95ADFE),
             blurRadius: 22,
@@ -40,14 +39,14 @@ class BmiWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("BMI(Body Mass Index)")
+                const Text("BMI(Body Mass Index)")
                     .text
                     .color(Colors.white)
                     .size(18)
                     .bold
                     .make(),
                 10.heightBox,
-                Text("You have a normal weight")
+                const Text("You have a normal weight")
                     .text
                     .size(12)
                     .color(Colors.white)
@@ -59,7 +58,7 @@ class BmiWidget extends StatelessWidget {
                   width: 95,
                   height: 35,
                   decoration: ShapeDecoration(
-                    gradient: LinearGradient(
+                    gradient: const LinearGradient(
                       begin: Alignment(-1.00, 0.08),
                       end: Alignment(1, -0.08),
                       colors: [Color(0xFFC58BF2), Color(0xFFEEA4CE)],
@@ -69,7 +68,7 @@ class BmiWidget extends StatelessWidget {
                     ),
                   ),
                   child: Center(
-                    child: Text("View More")
+                    child: const Text("View More")
                         .text
                         .size(10)
                         .color(Colors.white)
@@ -86,14 +85,9 @@ class BmiWidget extends StatelessWidget {
   }
 }
 
-class TargetWidget extends StatefulWidget {
+class TargetWidget extends StatelessWidget {
   const TargetWidget({super.key});
 
-  @override
-  State<TargetWidget> createState() => _TargetWidgetState();
-}
-
-class _TargetWidgetState extends State<TargetWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -101,11 +95,11 @@ class _TargetWidgetState extends State<TargetWidget> {
       height: MediaQuery.of(context).size.height * 0.07,
       decoration: ShapeDecoration(
         gradient: LinearGradient(
-          begin: Alignment(-1.00, 0.08),
-          end: Alignment(1, -0.08),
+          begin: const Alignment(-1.00, 0.08),
+          end: const Alignment(1, -0.08),
           colors: [
-            Color(0xFF92A3FD).withOpacity(0.3),
-            Color(0xFF9DCEFF).withOpacity(0.3)
+            const Color(0xFF92A3FD).withOpacity(0.3),
+            const Color(0xFF9DCEFF).withOpacity(0.3)
           ],
         ),
         shape: RoundedRectangleBorder(
@@ -123,7 +117,7 @@ class _TargetWidgetState extends State<TargetWidget> {
             width: 78,
             height: 38,
             decoration: ShapeDecoration(
-              gradient: LinearGradient(
+              gradient: const LinearGradient(
                 begin: Alignment(-1.00, 0.08),
                 end: Alignment(1, -0.08),
                 colors: [Color(0xFF92A3FD), Color(0xFF9DCEFF)],
@@ -133,7 +127,7 @@ class _TargetWidgetState extends State<TargetWidget> {
               ),
             ),
             child: Center(
-              child: Text(
+              child: const Text(
                 'Check',
               ).text.size(13).bold.make(),
             ),
@@ -144,24 +138,19 @@ class _TargetWidgetState extends State<TargetWidget> {
   }
 }
 
-class ChartWidget extends StatefulWidget {
-  const ChartWidget({super.key});
+class ChartWidget extends StatelessWidget {
+   ChartWidget({super.key});
 
-  @override
-  State<ChartWidget> createState() => _ChartWidgetState();
-}
-
-class _ChartWidgetState extends State<ChartWidget> {
   List<FlSpot> chartData = [
-    FlSpot(0, 1),
-    FlSpot(1, 3),
-    FlSpot(2, 10),
-    FlSpot(3, 7),
-    FlSpot(4, 12),
-    FlSpot(5, 13),
-    FlSpot(6, 17),
-    FlSpot(7, 15),
-    FlSpot(8, 20),
+    const FlSpot(0, 1),
+    const FlSpot(1, 3),
+    const FlSpot(2, 10),
+    const FlSpot(3, 7),
+    const FlSpot(4, 12),
+    const FlSpot(5, 13),
+    const FlSpot(6, 17),
+    const FlSpot(7, 15),
+    const FlSpot(8, 20),
   ];
 
   @override
@@ -172,11 +161,11 @@ class _ChartWidgetState extends State<ChartWidget> {
       height: MediaQuery.of(context).size.height * 0.2,
       decoration: ShapeDecoration(
         gradient: LinearGradient(
-          begin: Alignment(-1.00, 0.08),
-          end: Alignment(1, -0.08),
+          begin: const Alignment(-1.00, 0.08),
+          end: const Alignment(1, -0.08),
           colors: [
-            Color(0xFF92A3FD).withOpacity(0.3),
-            Color(0xFF9DCEFF).withOpacity(0.3)
+            const Color(0xFF92A3FD).withOpacity(0.3),
+            const Color(0xFF9DCEFF).withOpacity(0.3)
           ],
         ),
         shape: RoundedRectangleBorder(
@@ -202,15 +191,15 @@ class _ChartWidgetState extends State<ChartWidget> {
           ),
           LineChart(
             LineChartData(
-              lineTouchData: LineTouchData(
+              lineTouchData: const LineTouchData(
                 touchTooltipData: LineTouchTooltipData(
                   tooltipBgColor: Colors.blueAccent,
                 ),
               ),
-              gridData: FlGridData(
+              gridData: const FlGridData(
                 show: false,
               ),
-              titlesData: FlTitlesData(
+              titlesData: const FlTitlesData(
                 show: false,
               ),
               borderData: FlBorderData(
@@ -223,7 +212,7 @@ class _ChartWidgetState extends State<ChartWidget> {
                   color: Colors.blueAccent,
                   barWidth: 2,
                   isStrokeCapRound: true,
-                  dotData: FlDotData(
+                  dotData: const FlDotData(
                     show: false,
                   ),
                   belowBarData: BarAreaData(
@@ -252,8 +241,9 @@ class VerticalIndecatorWidget extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
+        // ignore: prefer_const_literals_to_create_immutables
         shadows: [
-          BoxShadow(
+          const BoxShadow(
             color: Color(0x0C1D242A),
             blurRadius: 40,
             offset: Offset(0, 10),
@@ -345,14 +335,9 @@ class VerticalIndecatorWidget extends StatelessWidget {
   }
 }
 
-class SleepWidget extends StatefulWidget {
+class SleepWidget extends StatelessWidget {
   const SleepWidget({super.key});
 
-  @override
-  State<SleepWidget> createState() => _SleepWidgetState();
-}
-
-class _SleepWidgetState extends State<SleepWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -363,7 +348,7 @@ class _SleepWidgetState extends State<SleepWidget> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
-        shadows: [
+        shadows: const [
           BoxShadow(
             color: Color(0x111D1617),
             blurRadius: 40,
@@ -376,7 +361,7 @@ class _SleepWidgetState extends State<SleepWidget> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Sleep").text.size(16).bold.make(),
+          const Text("Sleep").text.size(16).bold.make(),
           10.heightBox,
           Column(
             children: [
@@ -396,14 +381,9 @@ class _SleepWidgetState extends State<SleepWidget> {
   }
 }
 
-class CaloriesWidget extends StatefulWidget {
+class CaloriesWidget extends StatelessWidget {
   const CaloriesWidget({super.key});
 
-  @override
-  State<CaloriesWidget> createState() => _CaloriesWidgetState();
-}
-
-class _CaloriesWidgetState extends State<CaloriesWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -414,7 +394,7 @@ class _CaloriesWidgetState extends State<CaloriesWidget> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
-          shadows: [
+          shadows: const [
             BoxShadow(
               color: Color(0x111D1617),
               blurRadius: 40,
@@ -426,14 +406,14 @@ class _CaloriesWidgetState extends State<CaloriesWidget> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Calories").text.size(16).bold.make(),
+            const Text("Calories").text.size(16).bold.make(),
             10.heightBox,
             CircularPercentIndicator(
               radius: 120.0,
               lineWidth: 13.0,
               animation: true,
               percent: 0.5,
-              center: Text(
+              center: const Text(
                 "200KCal\n     left",
                 style: TextStyle(fontSize: 15.0),
               ),

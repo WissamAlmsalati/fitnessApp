@@ -39,7 +39,7 @@ class MainApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         fontFamily: primaryFont,
       ),
-      home: const RegisterScreen(),
+      home:  RegisterScreen(),
     );
   }
 }

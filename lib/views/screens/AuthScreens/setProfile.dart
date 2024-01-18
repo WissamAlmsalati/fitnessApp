@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitnes_app/services/createAnewUser.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -10,7 +9,6 @@ import '../../../constants/icons.dart';
 import '../../widgets/authWidgets/registerWidgets.dart';
 import '../../widgets/authWidgets/setprofileWidget.dart';
 import 'goalsPageView.dart';
-import 'login.dart';
 
 class SetProfile extends StatefulWidget {
   const SetProfile({Key? key});
@@ -97,7 +95,11 @@ class _SetProfileState extends State<SetProfile> {
                           uid: _auth.currentUser!.uid,
                           weight: _weight.text,
                           height: _height.text,
-                        ).updateUserData();
+                        ).updateUserData(
+                          _auth.currentUser!.uid,
+                          weight: _weight.text,
+                          height: _height.text,
+                        );
                         Get.to(GoalsPageView());
                         }catch(e){
                           Get.snackbar("Error", e.toString());

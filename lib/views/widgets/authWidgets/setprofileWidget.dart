@@ -53,7 +53,11 @@ class _GenderSelectionScreenState extends State<GenderSelectionScreen> {
           }).toList(),
           onChanged: (String? newValue) {
             setState(() {
-              UserDoc(uid: _auth.currentUser!.uid, gender: newValue).updateUserData();
+              UserDoc(uid: _auth.currentUser!.uid, gender: newValue).updateUserData(
+                                          _auth.currentUser!.uid,
+
+                gender: newValue,
+              );
               _selectedGender = newValue;
             });
           }),
@@ -148,18 +152,12 @@ class _DatePickerState extends State<DatePicker> {
   }
 }
 
-class ChoseWeightOrWidth extends StatefulWidget {
+class ChoseWeightOrWidth extends StatelessWidget {
   var Icon;
   String? hintText;
     var controler;
 
   ChoseWeightOrWidth({super.key, this.Icon, this.hintText , this.controler});
-  @override
-  State<ChoseWeightOrWidth> createState() => _ChoseWeightOrWidthState();
-}
-
-
-class _ChoseWeightOrWidthState extends State<ChoseWeightOrWidth> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -173,20 +171,20 @@ class _ChoseWeightOrWidthState extends State<ChoseWeightOrWidth> {
       ),
       child: TextFormField(
         keyboardType: TextInputType.number,
-      controller: widget.controler,
+      controller: controler,
         decoration: InputDecoration(
           prefixIcon: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Padding(
               padding: const EdgeInsets.all(4.0),
-              child: widget.Icon,
+              child: Icon,
             ),
           ),
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(17),
           ),
-          hintText: widget.hintText,
+          hintText: hintText,
           hintStyle: const TextStyle(
             color: Color(0xFFA1A1A1),
             fontSize: 14,

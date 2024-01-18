@@ -4,10 +4,7 @@ import 'package:fitnes_app/views/screens/HomeScreens/notification.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:vertical_percent_indicator/vertical_percent_indicator.dart';
-import '../../../constants/lists.dart';
 import '../../widgets/homeScreenWidgets/homeScreenWidget.dart';
 
 class HomePagePage extends StatefulWidget {
@@ -45,7 +42,7 @@ String? firstname;
   future: UserDoc(uid: _auth.currentUser!.uid).getUserData(),
   builder: (BuildContext context, AsyncSnapshot<UserDoc> snapshot) {
     if (snapshot.connectionState == ConnectionState.waiting) {
-      return CircularProgressIndicator(); // Show a loading spinner while waiting
+      return const CircularProgressIndicator(); // Show a loading spinner while waiting
     } else if (snapshot.hasError) {
       return Text('Error: ${snapshot.error}'); // Show error message if something went wrong
     } else {
@@ -105,7 +102,7 @@ String? firstname;
                       alignment: Alignment.topLeft,
                       child: const Text("Activity Status").text.size(16).bold.make()),
                   30.heightBox,
-                  const ChartWidget(),
+                   ChartWidget(),
                   30.heightBox,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
